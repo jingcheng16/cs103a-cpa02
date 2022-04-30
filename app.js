@@ -110,6 +110,18 @@ app.get("/mongodb", (req, res, next) => {
   res.render("mongodb");
 });
 
+app.post("/mongodb/add", async (req, res, next) => {
+  try {
+    const { firstName, lastName, gender, age } = req.body;
+    let data = { firstName, lastName, gender, age }; // create the data object
+    let item = new Person(data); // create the database object (and test the types are correct)
+    await item.save(); // save the todo item in the database
+    res.redirect("/mongodb"); // go back to the todo page
+  } catch (e) {
+    next(e);
+  }
+});
+
 app.get("/getfriends/:gender", async (req, res, next) => {
   try {
     console.log(await Person.find().count());
