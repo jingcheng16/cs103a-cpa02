@@ -17,7 +17,7 @@ const layouts = require("express-ejs-layouts");
 // *********************************************************** //
 //  Loading models
 // *********************************************************** //
-const People = require("./models/People");
+const Person = require("./models/Person");
 
 // *********************************************************** //
 //  Connecting to the database
@@ -112,10 +112,11 @@ app.get("/mongodb", (req, res, next) => {
 
 app.get("/getfriends/:gender", async (req, res, next) => {
   try {
+    console.log(await Person.find().count());
     const { gender } = req.params;
     console.log(gender);
     console.log(typeof gender);
-    const people = await People.find({ gender });
+    const people = await Person.find({ gender });
     console.log(people);
     res.locals.people = people;
     res.render("friendlist");
