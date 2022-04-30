@@ -1,0 +1,15 @@
+<p>Here is a list of my friends!</p>
+<table class="table table-bordered table-striped">
+  <tbody>
+    <% for (person of people ){%>
+    <tr>
+      <td><%= person.firstName %>, <%= people.lastName%></td>
+      <td><%= person.gender %></td>
+      <td><%= person.age %></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
+<pre>
+<%= JSON.stringify(people,null,5) %>
+</pre>
